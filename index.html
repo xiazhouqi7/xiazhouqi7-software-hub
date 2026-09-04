@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f1ea">
+  <title>下周七·工具箱</title>
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --panel:rgba(255,255,255,.78);
+      --text:#1d1d1f;
+      --muted:#8d8d8d;
+      --line:rgba(25,25,25,.12);
+      --shadow:0 18px 48px rgba(48,42,34,.065);
+      --radius:25px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% -6%, rgba(232,178,133,.15), transparent 30rem),
+        radial-gradient(circle at 94% 12%, rgba(126,163,187,.09), transparent 27rem),
+        var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    .page{
+      width:min(1240px, calc(100% - 48px));
+      margin:0 auto;
+      padding:46px 0 84px;
+    }
+
+    .hero{
+      margin:0 0 62px;
+    }
+
+    .mini-brand{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:24px;
+      font-size:15px;
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      color:#444;
+    }
+
+    .brand-mark{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:linear-gradient(145deg,#252525,#4b4b4b);
+      box-shadow:0 8px 18px rgba(0,0,0,.12);
+      font-size:16px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(38px,5.1vw,72px);
+      line-height:1.04;
+      letter-spacing:-.06em;
+      font-weight:800;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .card{
+      min-height:184px;
+      padding:23px;
+      border:1px solid rgba(255,255,255,.88);
+      border-radius:var(--radius);
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+      display:flex;
+      flex-direction:column;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 23px 58px rgba(48,42,34,.095);
+    }
+
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .app{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      color:#fff;
+      font-weight:800;
+      font-size:17px;
+      letter-spacing:-.03em;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.25),
+        0 8px 18px rgba(0,0,0,.09);
+      text-shadow:0 1px 2px rgba(0,0,0,.16);
+    }
+
+    .icon.obs{background:linear-gradient(145deg,#111,#494949)}
+    .icon.dy{background:linear-gradient(145deg,#ef3555,#df3e33)}
+    .icon.cv{background:linear-gradient(145deg,#8059d7,#d365c8)}
+    .icon.cp{background:linear-gradient(145deg,#476781,#8098aa)}
+    .icon.ch{background:linear-gradient(145deg,#e08539,#d1a13c)}
+    .icon.z7{background:linear-gradient(145deg,#161616,#555)}
+    .icon.tg{background:linear-gradient(145deg,#379fdb,#2788c0)}
+    .icon.lg{background:linear-gradient(145deg,#e0922e,#f2b746)}
+
+    .app-title{
+      min-width:0;
+    }
+
+    .app-title h3{
+      margin:0 0 6px;
+      font-size:18px;
+      line-height:1.2;
+      letter-spacing:-.025em;
+    }
+
+    .version{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    .badge{
+      flex:0 0 auto;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:700;
+      border:1px solid transparent;
+    }
+
+    .badge.recommend{
+      background:rgba(216,128,73,.10);
+      color:#9a6747;
+      border-color:rgba(216,128,73,.10);
+    }
+
+    .badge.portable{
+      background:rgba(93,130,154,.10);
+      color:#58788d;
+      border-color:rgba(93,130,154,.10);
+    }
+
+    .badge.offline{
+      background:rgba(210,158,73,.11);
+      color:#8d6b34;
+      border-color:rgba(210,158,73,.11);
+    }
+
+    .actions{
+      margin-top:auto;
+      padding-top:28px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .actions.single{
+      justify-content:center;
+    }
+
+    .btn{
+      min-height:40px;
+      padding:10px 15px;
+      border-radius:13px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      font-weight:690;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.9);
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:#fff;
+      border-color:rgba(0,0,0,.18);
+    }
+
+    .btn.primary{
+      background:#252525;
+      color:#fff;
+      border-color:#252525;
+    }
+
+    .btn.primary:hover{background:#111}
+
+    @media(max-width:1100px){
+      .page{
+        width:min(100% - 34px,1240px);
+      }
+      .grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media(max-width:760px){
+      .page{
+        width:min(100% - 22px,1240px);
+        padding:32px 0 58px;
+      }
+
+      .hero{
+        margin-bottom:42px;
+      }
+      .mini-brand{
+        margin-bottom:18px;
+        font-size:13px;
+      }
+      .brand-mark{
+        width:36px;
+        height:36px;
+        border-radius:12px;
+        font-size:15px;
+      }
+      h1{
+        font-size:46px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      .card{
+        min-height:170px;
+        padding:18px;
+        border-radius:21px;
+      }
+
+      .app-title h3{
+        font-size:17px;
+      }
+
+      .actions{
+        padding-top:22px;
+        gap:7px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="mini-brand">
+        <div class="brand-mark">X7</div>
+        <span>X7 Design</span>
+      </div>
+      <h1>下周七·工具箱</h1>
+    </section>
+
+    <section class="grid">
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon obs">OBS</div>
+            <div class="app-title">
+              <h3>OBS Studio</h3>
+              <div class="version">v32.2.2 · Windows x64</div>
+            </div>
+          </div>
+          <span class="badge recommend">推荐</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://cdn-fastly.obsproject.com/downloads/OBS-Studio-32.2.2-Windows-x64-Installer.exe">安装版</a>
+          <a class="btn" href="https://cdn-fastly.obsproject.com/downloads/OBS-Studio-32.2.2-Windows-x64.zip">ZIP 版</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon dy">直播</div>
+            <div class="app-title">
+              <h3>抖音直播伴侣</h3>
+              <div class="version">Windows x64</div>
+            </div>
+          </div>
+        </div>
+        <div class="actions single">
+          <a class="btn primary" href="https://streamingtool.douyin.com/" target="_blank" rel="noopener">官方下载</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon cv">CV</div>
+            <div class="app-title">
+              <h3>Clash Verge Rev</h3>
+              <div class="version">v2.5.2 · Windows x64</div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_x64-setup.exe">Windows x64</a>
+          <a class="btn" href="https://github.com/clash-verge-rev/clash-verge-rev/releases/latest" target="_blank" rel="noopener">最新版本</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon cp">CP</div>
+            <div class="app-title">
+              <h3>Clash Party</h3>
+              <div class="version">v2.0.2 · Windows x64</div>
+            </div>
+          </div>
+          <span class="badge portable">便携</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/mihomo-party-org/clash-party/releases/download/v2.0.2/clash-party-windows-2.0.2-x64-portable.7z">便携版</a>
+          <a class="btn" href="https://github.com/mihomo-party-org/clash-party/releases/latest" target="_blank" rel="noopener">最新版本</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon ch">CH</div>
+            <div class="app-title">
+              <h3>Google Chrome</h3>
+              <div class="version">Windows x64</div>
+            </div>
+          </div>
+          <span class="badge offline">离线</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://dl.google.com/chrome/install/ChromeStandaloneSetup64.exe">64 位离线版</a>
+          <a class="btn" href="https://www.google.com/chrome/" target="_blank" rel="noopener">官网</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon z7">7Z</div>
+            <div class="app-title">
+              <h3>7-Zip</h3>
+              <div class="version">v26.03 · Windows x64</div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/ip7z/7zip/releases/download/26.03/7z2603-x64.exe">Windows x64</a>
+          <a class="btn" href="https://www.7-zip.org/download.html" target="_blank" rel="noopener">官网</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon tg">TG</div>
+            <div class="app-title">
+              <h3>Telegram Desktop</h3>
+              <div class="version">Windows x64</div>
+            </div>
+          </div>
+          <span class="badge portable">便携</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://telegram.org/dl/desktop/win64">安装版</a>
+          <a class="btn" href="https://telegram.org/dl/desktop/win64_portable">Portable</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="app">
+            <div class="icon lg">雷神</div>
+            <div class="app-title">
+              <h3>雷神加速器</h3>
+              <div class="version">Windows</div>
+            </div>
+          </div>
+        </div>
+        <div class="actions single">
+          <a class="btn primary" href="https://www.leigod.com/download" target="_blank" rel="noopener">官方下载</a>
+        </div>
+      </article>
+
+    </section>
+  </main>
+</body>
+</html>
