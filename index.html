@@ -637,8 +637,9 @@
 
         /* ===== 卡片入场渐显 ===== */
         .card {
-            opacity: 0;
-            animation: cardFadeIn 0.5s ease forwards;
+            /* 默认可见，关闭或不支持动画时仍能访问下载入口。 */
+            opacity: 1;
+            animation: cardFadeIn 0.5s ease backwards;
         }
 
         .card:nth-child(1) {
@@ -854,3 +855,4 @@
 
 </body>
 </html>
+
