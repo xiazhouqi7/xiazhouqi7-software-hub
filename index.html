@@ -9,9 +9,9 @@
   <style>
     :root{--bg:#f7f7f3;--paper:#fffefa;--ink:#29312c;--muted:#7c857d;--line:#e8e9e2;--orange:#c78155;--green:#354239;--shadow:0 16px 48px rgba(69,71,58,.055)}
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;overflow-x:clip}
+    html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:18px}
     body{margin:0;background:radial-gradient(ellipse 520px 410px at calc(100% - 60px) 175px,rgba(249,214,190,.41),transparent 75%),radial-gradient(ellipse 490px 450px at 0 850px,rgba(214,231,215,.38),transparent 78%),var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:clip}
-    a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+    a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
     .wrap{max-width:1140px;width:calc(100% - 56px);margin:0 auto}
     .site-header{padding:24px 0 0}
     .nav{display:flex;align-items:center;justify-content:space-between;min-height:72px;background:rgba(255,255,252,.82);border:1px solid #e9e8e2;border-radius:18px;box-shadow:0 8px 32px rgba(55,65,52,.035);backdrop-filter:blur(16px);padding:0 23px;gap:16px}
@@ -38,9 +38,75 @@
     .footer-card{background:#303f35;color:#fff;border-radius:27px;padding:35px 41px;margin:0 0 27px;display:flex;justify-content:space-between;align-items:center;gap:18px}.footer-card .overline{color:#c5c8a7;margin-bottom:8px}.footer-card strong{font-size:25px;letter-spacing:-.8px}.footer-card a{background:#fff;color:#354238;padding:11px 17px;border-radius:12px;font-size:12px;font-weight:750;white-space:nowrap}
     .footer{display:flex;justify-content:space-between;align-items:center;gap:15px;font-size:12px;color:#a3aba0;padding:0 0 35px}.footer a:hover{color:#b97f5e}
     :focus-visible{outline:3px solid #d7a177;outline-offset:3px}
-    @media(max-width:950px){.hero{gap:24px}.software-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-art{transform:scale(.93)}.nav-side{gap:17px}}
-    @media(max-width:680px){.wrap{width:calc(100% - 30px)}.site-header{padding-top:13px}.nav{padding:0 15px;min-height:61px;border-radius:15px}.brand{font-size:17px}.brand-mark{width:34px;height:34px}.nav-side a:not(.nav-pill){display:none}.nav-side .nav-pill{font-size:11px;padding:9px 11px}.hero{grid-template-columns:1fr;min-height:auto;gap:0;padding:52px 5px 22px}.hero h1{font-size:clamp(38px,10vw,49px);letter-spacing:-1.9px;line-height:1.31;margin:21px 0 14px}.hero p{font-size:13px}.hero-actions{margin-top:22px}.hero-cta,.hero-light{font-size:12px;min-height:43px;padding:10px 14px}.hero-art{height:288px;min-height:288px;margin:9px 0 4px;transform:scale(.73);transform-origin:center}.art-board{width:328px}.art-floating{right:-7px;bottom:8px}.section{padding:24px 0 43px}.heading{align-items:start}.heading h2{font-size:25px}.section-desc{font-size:12px}.stats{font-size:11px}.filters{gap:7px;margin:17px 0 17px}.filter{font-size:11px;padding:7px 12px;min-height:35px}.software-grid{grid-template-columns:1fr;gap:12px}.software-card{min-height:244px;padding:20px 19px 19px;border-radius:17px}.card-copy h3{font-size:18px}.card-actions{padding-top:17px}.hint{display:block;padding:19px 20px}.hint a{margin-top:13px}.footer-card{border-radius:19px;margin-bottom:19px;padding:25px 21px;display:block}.footer-card strong{font-size:21px}.footer-card a{margin-top:19px;display:inline-flex}.footer{align-items:start;flex-direction:column;gap:4px;padding-bottom:25px}}
-    @media(max-width:370px){.wrap{width:calc(100% - 24px)}.hero h1{font-size:35px}.hero-art{transform:scale(.65)}.card-actions{flex-direction:column}.download-btn{width:100%}}
+    @media(max-width:950px){
+      .hero{gap:24px}
+      .software-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero-art{transform:scale(.93)}
+      .nav-side{gap:17px}
+    }
+    @media(max-width:680px){
+      /* 页面宽度严格受视口约束；移动端不保留大幅装饰图的空白 */
+      .wrap{width:calc(100% - 32px)}
+      .site-header{padding-top:12px}
+      .nav{padding:0 12px;min-height:60px;border-radius:15px;gap:8px}
+      .brand{font-size:15px;letter-spacing:-.5px;gap:8px}
+      .brand-mark{width:32px;height:32px;flex-shrink:0}
+      .brand small{font-size:8px;letter-spacing:.9px}
+      .nav-side{gap:8px}
+      .nav-side a:not(.nav-pill){display:none}
+      .nav-side .nav-pill{font-size:11px;padding:10px 11px;white-space:nowrap}
+      .hero{grid-template-columns:minmax(0,1fr);min-height:0;gap:0;padding:34px 1px 7px}
+      .eyebrow{font-size:11px;padding:6px 12px}
+      .hero h1{font-size:clamp(35px,9.5vw,45px);letter-spacing:-1.7px;line-height:1.24;margin:17px 0 10px}
+      .hero p{font-size:13.5px;line-height:1.78;max-width:440px}
+      .hero-actions{gap:9px;margin-top:19px}
+      .hero-cta,.hero-light{font-size:13px;min-height:44px;padding:10px 14px}
+      /* 装饰性软件预览转成紧凑的 3 列小图，不重复占据一个手机首屏 */
+      .hero-art{height:auto;min-height:0;margin:20px 0 0;transform:none;display:block}
+      .hero-halo{width:100%;height:100%;aspect-ratio:auto;inset:0;border-radius:22px;filter:blur(7px);opacity:.6}
+      .art-board{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;transform:none;padding:12px;border-radius:18px;box-shadow:0 12px 30px rgba(106,85,68,.06)}
+      .art-dots,.art-board h2,.art-board>p,.art-floating{display:none}
+      .art-mini{min-width:0;min-height:75px;margin:0;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;border-radius:11px}
+      .art-square{width:31px;height:31px;border-radius:9px;font-size:10px}
+      .art-mini strong{font-size:10px;line-height:1.35;overflow-wrap:anywhere}
+      .art-mini small,.art-arrow{display:none!important}
+      .section{padding:28px 0 43px}
+      .heading{align-items:end;gap:7px}
+      .overline{font-size:10px;letter-spacing:1.5px}
+      .heading h2{font-size:clamp(20px,5.5vw,25px);line-height:1.35;letter-spacing:-.75px}
+      .section-desc{font-size:13px;line-height:1.55;margin-top:7px}
+      .stats{font-size:12px;padding-bottom:3px;flex-shrink:0}
+      /* 第一排 3 个分类，第二排 2 个等宽分类；避免最后一个孤零零换行 */
+      .filters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:18px 0 18px}
+      .filter{grid-column:span 2;font-size:12px;padding:9px 4px;min-height:44px;white-space:nowrap}
+      .filter:nth-child(n+4){grid-column:span 3}
+      .software-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+      .software-card{min-height:0;padding:18px 18px 17px;border-radius:17px}
+      .app-icon{width:46px;height:46px;border-radius:13px}
+      .card-type{font-size:12px}
+      .card-copy h3{font-size:18px;line-height:1.4;margin:13px 0 4px}
+      .card-description{font-size:14px;line-height:1.55;margin-bottom:5px}
+      .card-version,.card-note{font-size:12px;line-height:1.5}
+      .card-actions{gap:9px;padding-top:15px}
+      .download-btn{min-height:45px;min-width:0;font-size:13px;padding:10px 9px;white-space:normal;text-align:center;line-height:1.3}
+      .hint{display:block;padding:19px 20px}
+      .hint strong{font-size:14px}
+      .hint p,.hint a{font-size:13px}
+      .hint a{margin-top:12px}
+      .footer-card{border-radius:19px;margin-bottom:19px;padding:24px 21px;display:block}
+      .footer-card strong{font-size:21px}
+      .footer-card a{margin-top:17px;display:inline-flex;min-height:44px;align-items:center}
+      .footer{align-items:start;flex-direction:column;gap:4px;padding-bottom:25px}
+    }
+    @media(max-width:370px){
+      .wrap{width:calc(100% - 24px)}
+      .hero h1{font-size:35px}
+      .hero-light{display:none}
+      .download-btn{font-size:12px}
+      .card-actions{flex-direction:column}
+      .download-btn{width:100%}
+    }
+    @media(hover:none){.software-card:hover,.download-btn:hover{transform:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
   </style>
 </head>
@@ -60,7 +126,7 @@
         <p>录屏直播、网络工具、浏览器与系统维护。按用途分类，打开页面就能找到需要的软件。</p>
         <div class="hero-actions"><a class="hero-cta" href="#apps">浏览全部软件 <span aria-hidden="true">↓</span></a><a class="hero-light" href="https://github.com/xiazhouqi7/xiazhouqi7-software-hub/releases" target="_blank" rel="noopener noreferrer">文件下载库 ↗</a></div>
       </div>
-      <div class="hero-art" aria-hidden="true"><div class="hero-halo"></div><div class="art-board"><div class="art-dots"><i></i><i></i><i></i></div><h2>软件速取</h2><p>常用工具 · 清晰归类</p><div class="art-mini"><span class="art-square">CV</span><span><strong>Clash Verge Rev</strong><small>网络工具</small></span><b class="art-arrow">↗</b></div><div class="art-mini"><span class="art-square">7Z</span><span><strong>7-Zip</strong><small>压缩工具</small></span><b class="art-arrow">↗</b></div><div class="art-mini"><span class="art-square">UT</span><span><strong>Uninstall Tool</strong><small>系统维护</small></span><b class="art-arrow">↗</b></div></div><div class="art-floating">9 款常用软件 ✓</div></div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-halo"></div><div class="art-board"><div class="art-dots"><i></i><i></i><i></i></div><h2>软件速取</h2><p>常用工具 · 清晰归类</p><div class="art-mini"><span class="art-square">CV</span><span><strong>Clash Verge Rev</strong><small>网络工具</small></span><b class="art-arrow">↗</b></div><div class="art-mini"><span class="art-square">7Z</span><span><strong>7-Zip</strong><small>压缩工具</small></span><b class="art-arrow">↗</b></div><div class="art-mini"><span class="art-square">UT</span><span><strong>Uninstall Tool</strong><small>系统维护</small></span><b class="art-arrow">↗</b></div></div><div class="art-floating"><span id="hero-count">9</span> 款常用软件 ✓</div></div>
     </section>
 
     <section class="section" id="apps" aria-labelledby="apps-title">
@@ -124,6 +190,10 @@
     const filters=[...document.querySelectorAll('[data-filter]')];
     const software=[...document.querySelectorAll('.software-card')];
     const count=document.getElementById('count');
+    const heroCount=document.getElementById('hero-count');
+    const total=software.length;
+    count.textContent=String(total);
+    if(heroCount)heroCount.textContent=String(total);
     filters.forEach(button=>button.addEventListener('click',()=>{
       const selection=button.dataset.filter;
       filters.forEach(item=>{const on=item===button;item.classList.toggle('active',on);item.setAttribute('aria-pressed',String(on));});
